@@ -98,7 +98,6 @@
       },
       uploadFile(e) {
         const input = e.target
-        console.log(input)
         if (input.files && input.files[0]) {
           const reader = new FileReader()
 

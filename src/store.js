@@ -97,7 +97,6 @@ export default new Vuex.Store({
       return state.themes.list
     },
     getFilterQuestionnaireThemes: (state) => (searchText) => {
-      console.log(searchText);
       let themes = [...state.themes.list];
       if (searchText) {
         let search = RegExp(searchText);
