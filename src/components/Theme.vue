@@ -1,16 +1,21 @@
 <template>
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Théme 1 : L'organisation du syndicat</h3>
-            <div><div class="clearfix">
-                <div class="float-left">
-                    <strong>43%</strong>
+            <h3 class="card-title">Théme {{indexTheme}} : {{theme.title}}</h3>&nbsp;
+            <div>
+                <div class="clearfix">
+                    <div class="float-left">
+                        <strong>{{theme.percentDone}}%</strong>
+                    </div>
                 </div>
-            </div>
                 <div class="progress progress-xs">
-                    <div class="progress-bar bg-yellow" role="progressbar" style="width: 42%" aria-valuenow="42" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-yellow"
+                         role="progressbar"
+                         :style="{width: `${theme.percentDone}%`}"
+                         :aria-valuenow="theme.percentDone"
+                         aria-valuemin="0"
+                         aria-valuemax="100"></div>
                 </div>
-
             </div>
         </div>
         <div class="table-responsive">
@@ -23,7 +28,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <question-preview v-for="item in 4"/>
+                <question-preview v-for="(question, index) in theme.questions"
+                                  :key="question.id"
+                                  :index-question="index + 1"
+                                  :index-theme="indexTheme"
+                                  :question="question"/>
                 </tbody>
             </table>
         </div>
@@ -35,9 +44,19 @@
 
   export default {
     name: 'theme',
+    props: {
+      theme: {
+        required: true,
+        type: Object,
+      },
+      indexTheme: {
+        required: true,
+        type: Number,
+      },
+    },
     components: {
       QuestionPreview
-    }
+    },
   }
 </script>
 

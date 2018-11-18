@@ -1,18 +1,50 @@
 <template>
     <tr>
-        <td class="w-1"><span class="avatar">1-1</span></td>
-        <td>Transmettre l’arrêté de création du syndicat, les statuts à jour et les principales modifications qui y ont été apportées depuis sa création.</td>
-        <td>A remplir</td>
+        <td class="w-1"><span class="avatar">{{indexTheme}}-{{indexQuestion}}</span></td>
+        <td>{{question.text}}</td>
+        <td>{{getStatuseText(question.status)}}</td>
         <td class="w-1">
-            <a href="#" type="submit" class="btn btn-primary">Répondre</a>
+            <router-link :to="{name: 'question', params: {questionId: question.id}}"
+                         class="btn btn-primary">
+                Répondre
+            </router-link>
         </td>
     </tr>
 </template>
 
 <script>
+  import { statuses } from '@/consts'
 
   export default {
-    name: 'question-preview'
+    props: {
+      question: {
+        required: true,
+        type: Object,
+      },
+      indexTheme: {
+        required: true,
+        type: Number,
+      },
+      indexQuestion: {
+        required: true,
+        type: Number,
+      },
+    },
+    name: 'question-preview',
+    methods: {
+      getStatuseText(code) {
+        switch (code) {
+          case statuses.INITIAL:
+            return 'A remplir'
+          case statuses.DONE:
+            return 'done'
+          case statuses.DRAFT:
+            return 'draft'
+          default:
+            return ''
+        }
+      }
+    }
   }
 </script>
 

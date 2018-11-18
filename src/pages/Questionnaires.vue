@@ -11,11 +11,11 @@
                     <div class="col-lg-12">
 
                         <ul class="list-group">
-                            <li v-for="item in 10" class="list-group-item">
-                                <questionnaire-preview></questionnaire-preview>
+                            <li v-for="item in questionnaires" class="list-group-item">
+                                <questionnaire-preview :questionnaire="item"
+                                                       :key="item.id"></questionnaire-preview>
                             </li>
                         </ul>
-
                     </div>
                 </div>
             </div>
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import Layout from '@/components/Layout';
   import QuestionnairePreview from '@/components/QuestionnairePreview'
 
@@ -32,6 +33,9 @@
     components: {
       Layout,
       QuestionnairePreview
+    },
+    computed: {
+      ...mapGetters(['questionnaires']),
     }
   }
 </script>
