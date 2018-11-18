@@ -66,6 +66,7 @@ export default new Vuex.Store({
         }
       ]
     },
+    answers: [],
   },
   mutations: {
     updatePercentDone(state, idTheme) {
@@ -76,16 +77,17 @@ export default new Vuex.Store({
           countDone++
         }
       })
-      currentTheme.percentDone = countDone / currentTheme.questionsCount * 100
+      currentTheme.percentDone = (countDone / currentTheme.questionsCount * 100).toFixed(2)
     },
   },
   actions: {
-    onQuestionDone({ state, commit }, id) {
+    onQuestionAnswered({ state, commit}, data) {
       let currentQuestion = null
       state.themes.list.forEach((item) => {
-        currentQuestion = item.questions.find((question) => question.id === id) || currentQuestion
+        currentQuestion = item.questions.find((question) => question.id === data.idQuestion) || currentQuestion
         if (currentQuestion !== null) {
           currentQuestion.status = 1
+          Vue.set(currentQuestion, 'answer', data)
           commit('updatePercentDone', item.id)
         }
       })
@@ -97,6 +99,20 @@ export default new Vuex.Store({
     },
     questionnaires(state) {
       return state.questionnaires
+    },
+    questionDetails: (state) => (id) => {
+      let question = null
+      state.themes.list.forEach((theme, index) => {
+        question = theme.questions.find((question) => question.id === id) || question
+        if (question !== null) {
+          question = {
+            indexQuestion: theme.questions.indexOf(question) + 1,
+            indexTheme: index + 1,
+            ...question,
+          }
+        }
+      })
+      return question
     }
   },
 })

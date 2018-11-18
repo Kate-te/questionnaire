@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { checkAuthToken } from '@/helpers/auth'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -18,7 +17,6 @@ export default new Router({
       alias: '/',
       name: 'questionnaires',
       component: () => import('./pages/Questionnaires.vue'),
-      beforeEnter: checkAuthToken,
     },
     {
       path: '/questionnaire/:questionnaireId',
@@ -32,3 +30,13 @@ export default new Router({
     }
   ],
 })
+
+router.beforeEach((to, from, next) => {
+  if (!window.localStorage.getItem('auth_token') && to.name !== 'login') {
+    next({name: 'login'})
+  } else {
+    next()
+  }
+})
+
+export default router

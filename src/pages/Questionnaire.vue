@@ -38,7 +38,7 @@
     components: {
       Layout,
       ThemeSidebar,
-      Theme
+      Theme,
     },
     data() {
       return {

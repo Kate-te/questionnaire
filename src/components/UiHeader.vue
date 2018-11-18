@@ -2,9 +2,10 @@
     <div class="header py-4">
         <div class="container">
             <div class="d-flex">
-                <a class="header-brand" href="./index.html">
-                    <img src="https://tabler.io/tabler/demo/brand/tabler.svg" class="header-brand-img" alt="tabler logo">
-                </a>
+                <router-link class="header-brand" :to="{name: 'questionnaires'}">
+                    <img src="https://i.onthe.io/shpzkl17smi36o636.a804c190.png" class="header-brand-img" alt="tabler logo">
+                    Survey
+                </router-link>
                 <div class="d-flex order-lg-2 ml-auto">
                     <div class="dropdown">
                         <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
