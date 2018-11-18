@@ -39,6 +39,7 @@
 <style scoped>
     .list-group-item {
         padding: 0;
+        border: 0;
         background-color: transparent;
     }
 </style>
