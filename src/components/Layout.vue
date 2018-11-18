@@ -4,8 +4,8 @@
             <ui-header></ui-header>
             <!--<nav-menu></nav-menu>-->
             <slot></slot>
-            <ui-footer></ui-footer>
         </div>
+        <ui-footer></ui-footer>
     </div>
 </template>
 
