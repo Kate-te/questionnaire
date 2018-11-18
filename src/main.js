@@ -6,7 +6,6 @@ import store from './store'
 import VeeValidate from 'vee-validate'
 import VueScrollTo from 'vue-scrollto'
 import './filters'
-import 'tabler-ui/dist/assets/css/tabler.css'
 
 Vue.config.productionTip = false
 

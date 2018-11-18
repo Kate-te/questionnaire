@@ -11,9 +11,8 @@
                     <div class="col-lg-12">
 
                         <ul class="list-group">
-                            <li v-for="item in questionnaires" class="list-group-item">
-                                <questionnaire-preview :questionnaire="item"
-                                                       :key="item.id"></questionnaire-preview>
+                            <li v-for="item in questionnaires" :key="item.id" class="list-group-item">
+                                <questionnaire-preview :questionnaire="item"></questionnaire-preview>
                             </li>
                         </ul>
                     </div>

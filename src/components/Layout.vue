@@ -12,13 +12,13 @@
 <script>
   import UiHeader from '@/components/UiHeader'
   import UiFooter from '@/components/UiFooter'
-  import NavMenu from '@/components/NavMenu'
+  // import NavMenu from '@/components/NavMenu'
 
   export default {
     name: 'layout',
     components: {
       UiHeader,
-      NavMenu,
+      // NavMenu,
       UiFooter
     }
   }

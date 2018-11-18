@@ -31,7 +31,7 @@
                         <div class="file-add_block">
                             <label class="form-label">Upload {{files.length ? 'more' : ''}} files:</label>
                             <div class="files-row">
-                                <div class="file-preview" v-for="file in files">
+                                <div class="file-preview" v-for="file in files" :key="file.name">
                                     <i class="fe fe-x"
                                        @click="removeFile(file)"></i>
                                     <img :src="file.preview" alt="file.name" class="imagecheck-image">

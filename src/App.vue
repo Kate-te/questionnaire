@@ -5,6 +5,8 @@
 </template>
 
 <style lang="scss">
+  @import "assets/style/main.scss";
+
   #app {
     height: 100%;
   }

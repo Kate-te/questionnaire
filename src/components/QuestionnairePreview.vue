@@ -28,8 +28,10 @@
   export default {
     name: 'questionnaire-preview',
       props: {
-        questionnaire: Object,
-        required: true
+        questionnaire: {
+          required: true,
+          type: Object,
+        },
       }
   }
 </script>
