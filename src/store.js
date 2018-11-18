@@ -66,7 +66,6 @@ export default new Vuex.Store({
         }
       ]
     },
-    answers: [],
   },
   mutations: {
     updatePercentDone(state, idTheme) {
@@ -96,6 +95,22 @@ export default new Vuex.Store({
   getters: {
     getQuestionnaireThemes(state) {
       return state.themes.list
+    },
+    getFilterQuestionnaireThemes: (state) => (searchText) => {
+      console.log(searchText);
+      let themes = [...state.themes.list];
+      if (searchText) {
+        let search = RegExp(searchText);
+        return themes.filter(theme => {
+          let isInThemeTitle = search.test(theme.title);
+          let isInQuestions = theme.questions.reduce((inQuestion, question) => {
+            return search.test(question.text)
+          }, false);
+
+          return isInQuestions || isInThemeTitle
+        })
+      }
+      return themes;
     },
     questionnaires(state) {
       return state.questionnaires
