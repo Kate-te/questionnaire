@@ -1,6 +1,8 @@
 <template>
-    <div class="card">
-        <div class="card-header">
+    <div class="card"
+         :class="{'card-collapsed': !opened}"
+         :id="`theme-${indexTheme}`">
+        <div class="card-header theme-header">
             <h3 class="card-title">Théme {{indexTheme}} : {{theme.title}}</h3>&nbsp;
             <div>
                 <div class="clearfix">
@@ -17,8 +19,16 @@
                          aria-valuemax="100"></div>
                 </div>
             </div>
+            <div class="card-options">
+                <a href="#"
+                   class="card-options-collapse"
+                   data-toggle="card-collapse"
+                   @click="toggleCollapse(theme.id)">
+                    <i class="fe fe-chevron-up"></i>
+                </a>
+            </div>
         </div>
-        <div class="table-responsive">
+        <div class="table-responsive" v-show="opened">
             <table class="table card-table table-striped table-vcenter">
                 <thead>
                 <tr>
@@ -53,13 +63,20 @@
         required: true,
         type: Number,
       },
+      opened: {
+        type: Boolean
+      }
     },
     components: {
       QuestionPreview
     },
+    methods: {
+      toggleCollapse(id) {
+        this.$emit('collapsed', {id, state: !this.opened})
+      }
+    }
   }
 </script>
 
 <style scoped>
-
 </style>

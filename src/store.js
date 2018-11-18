@@ -48,7 +48,7 @@ export default new Vuex.Store({
         },
         {
           id: '12',
-          title: 'Some title2',
+          title: 'Some title2 very very long title If you need to compile templates on the client (e.g. passing a stri',
           percentDone: 50,
           questionsCount: 2,
           questions: [
