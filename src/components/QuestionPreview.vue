@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: 'layout',
+    name: 'question-preview',
   }
 </script>
 
