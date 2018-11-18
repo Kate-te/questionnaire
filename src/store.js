@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    searchField: '',
     questionnaires: [
       {
         id: '1',
@@ -36,12 +37,12 @@ export default new Vuex.Store({
             },
             {
               id: '112',
-              text: 'The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through the guide without any build tools before using the CLI?',
+              text: '1The CLI assumes prior knowledge of Node.js and the associated build tools. If you are new to Vue or front-end build tools, we strongly suggest going through the guide without any build tools before using the CLI?',
               status: 0,
             },
             {
               id: '113',
-              text: 'UMD: UMD builds can be used directly in the browser via a tag. The default file from jsDelivr CDN at https://cdn.jsdelivr.net/npm/vue is the Runtime + Compiler UMD build (vue.js)?',
+              text: '22UMD: UMD builds can be used directly in the browser via a tag. The default file from jsDelivr CDN at https://cdn.jsdelivr.net/npm/vue is the Runtime + Compiler UMD build (vue.js)?',
               status: 0,
             },
           ],
@@ -77,7 +78,7 @@ export default new Vuex.Store({
         }
       })
       currentTheme.percentDone = countDone / currentTheme.questionsCount * 100
-    },
+    }
   },
   actions: {
     onQuestionDone({ state, commit }, id) {
@@ -95,8 +96,27 @@ export default new Vuex.Store({
     getQuestionnaireThemes(state) {
       return state.themes.list
     },
+    getFilterQuestionnaireThemes: (state) => (searchText) => {
+      console.log(searchText);
+      let themes = [...state.themes.list];
+      if (searchText) {
+        let search = RegExp(searchText);
+        return themes.filter(theme => {
+          let isInThemeTitle = search.test(theme.title);
+          let isInQuestions = theme.questions.reduce((inQuestion, question) => {
+            return search.test(question.text)
+          }, false);
+
+          return isInQuestions || isInThemeTitle
+        })
+      }
+      return themes;
+    },
     questionnaires(state) {
       return state.questionnaires
+    },
+    searchField: (state) =>  {
+      return state.searchField
     }
   },
 })

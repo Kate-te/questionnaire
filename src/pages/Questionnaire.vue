@@ -1,5 +1,23 @@
 <template>
     <layout>
+        <div class="header pt-2 pb-2">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 ml-auto">
+                        <form class="input-icon my-3 my-lg-0">
+                            <input type="Search"
+                                   class="form-control header-search"
+                                   placeholder="Rechercher…"
+                                   v-model="searchField"
+                                   tabindex="1">
+                            <div class="input-icon-addon">
+                                <i class="fe fe-search"></i>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="my-3 my-md-5">
             <div class="container">
                 <div class="page-header">
@@ -17,7 +35,7 @@
                         </div>
                     </div>
                     <div class="col-lg-8">
-                        <theme v-for="(theme, index) in getQuestionnaireThemes"
+                        <theme v-for="(theme, index) in getFilterQuestionnaireThemes(searchField)"
                                :key="theme.id"
                                :opened="themeCollapsed[theme.id]"
                                :index-theme="index + 1"
@@ -46,11 +64,15 @@
     data() {
       return {
         idQuestionnaire: this.$route.params.questionnaireId,
-        themeCollapsed: []
+        themeCollapsed: [],
+        searchField: ''
       }
     },
     computed: {
-      ...mapGetters(['getQuestionnaireThemes']),
+      ...mapGetters([
+        'getQuestionnaireThemes',
+        'getFilterQuestionnaireThemes'
+      ]),
     },
     created() {
       this.themeCollapsed = this.getQuestionnaireThemes.reduce((obj, theme) => {
