@@ -103,7 +103,7 @@ export default new Vuex.Store({
         return themes.filter(theme => {
           let isInThemeTitle = search.test(theme.title);
           let isInQuestions = theme.questions.reduce((inQuestion, question) => {
-            return search.test(question.text)
+            return inQuestion || search.test(question.text)
           }, false);
 
           return isInQuestions || isInThemeTitle

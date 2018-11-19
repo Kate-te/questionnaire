@@ -10,7 +10,7 @@
                         <a :href="href(theme.title)"
                            @click="toggleCollapse(theme.id)"
                            v-scroll-to="{
-                                         el: `#theme-${index + 1}`,
+                                         el: `#theme-${theme.id}`,
                                          offset: -200,
                                          onStart: null,
                                         }">

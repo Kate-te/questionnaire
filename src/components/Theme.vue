@@ -1,7 +1,7 @@
 <template>
     <div class="card"
          :class="{'card-collapsed': !opened}"
-         :id="`theme-${indexTheme}`">
+         :id="`theme-${theme.id}`">
         <div class="card-header theme-header">
             <h3 class="card-title">Théme {{indexTheme}} : {{theme.title}}</h3>&nbsp;
             <div>
